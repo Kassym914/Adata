@@ -2,15 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import csv 
 import pandas as pd
-# parser 1 flow
-# timecheck 
-# multiprocessing Pool 
-# Timecheck 
-# export to csv 
+
+#first mug of beer
 
 def get_html(url):
-    r = requests.get(url, verify=False) #Response
-    return r.text   #returns html code of the page
+    r = requests.get(url, verify=False) 
+    return r.text   
 
 def get_all_links(html):
     soup = BeautifulSoup(html, 'lxml')
@@ -48,7 +45,7 @@ def main():
             continue
     # print(dff)
     dff.to_excel('dff.xlsx')
-
+#second mug of beer
 def get_info(link):
     print(link)
     table_MN = pd.read_html(link)
@@ -71,7 +68,7 @@ def get_info(link):
     df11.reset_index(drop=True, inplace=True)
     df22.reset_index(drop=True, inplace=True)
     # df11
-
+#4th mug of beer
     df_all=pd.concat([df,df11, df22,df33.head(1)], axis=1)
     return df_all
 main()
